@@ -1,3 +1,6 @@
+# Short Description
+A User need to register with unique Username to get access in the Dashboard. After Successful registration and login, user can create notes which is only maintained by that authorized user ID. User can write his/her content in any language. Deleted notes can't be revived but user can update note as many as he/she wants. To secure account, user can logout from his/her Logged in account.
+
 # Installation Instructions
 run on terminal:
 1) git clone https://github.com/TusharRoy23/viva.git
@@ -21,6 +24,3 @@ uui (Random number generator) <br>
 bcryptjs (Hashing password) <br>
 .babelrc (Define custom folder path) <br>
 .env (Project configuration)
-
-# Short Description
-A User need to register with unique Username to get access in the Dashboard. After Successful registration and login, user can create notes which is only maintained by that authorized user ID. User can write his/her content in any language. Deleted notes can't be revived but user can update note as many as he/she wants. To secure account, user can logout from his/her Logged in account.
