@@ -1,6 +1,3 @@
-# viva
-interview purpose only
-
 # Installation Instructions
 run on terminal:
 1) git clone https://github.com/TusharRoy23/viva.git
