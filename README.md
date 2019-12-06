@@ -23,4 +23,4 @@ bcryptjs (Hashing password) <br>
 .env (Project configuration)
 
 # Short Description
-A User need to register with unique Username to get access in the Dashboard. After Successful registration and login, user can create notes which is only maintained by that authorized user ID. Deleted notes can't be revived but user can update note as many as he/she wants. To secure account, user can logout from his/her Logged in account.
+A User need to register with unique Username to get access in the Dashboard. After Successful registration and login, user can create notes which is only maintained by that authorized user ID. User can write his/her content in any language. Deleted notes can't be revived but user can update note as many as he/she wants. To secure account, user can logout from his/her Logged in account.
