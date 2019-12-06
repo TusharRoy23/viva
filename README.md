@@ -23,4 +23,6 @@ Yup (Back-End Validation) <br>
 uui (Random number generator) <br>
 bcryptjs (Hashing password) <br>
 .babelrc (Define custom folder path) <br>
-.env (Project configuration)
+.env (Project configuration) <br>
+Data will always store in JSON files <br>
+path: server/data/*
