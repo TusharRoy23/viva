@@ -88,7 +88,24 @@ const submitNote = async (req, res) => {
 
 const updateNote = async (req, res) => {
     try {
+        const { note, userID, noteID } = req.body;
         
+        fs.readFile(todoJson, 'utf8', (err, contents) => {
+            if (!err) {
+                var existData = JSON.parse(contents);
+                existData.forEach((item, index) => {
+                    if (item.noteID == noteID && item.userID == userID){
+                        existData[index].note = note;
+                    }
+                });
+
+                fs.writeFileSync(todoJson, JSON.stringify(existData));
+                return res.status(201).json({
+                    msg:'Updated Successfully !',
+                    status: true
+                });
+            }
+        });
     } 
     catch (error) {
         return res.status(201).json({
@@ -105,9 +122,6 @@ const deleteNote = async (req, res) => {
             var existData = JSON.parse(contents);
 
             existData.forEach((item, index) => {
-                console.log('index: ', index);
-                console.log('item: ', item);
-
                 if (item.noteID == noteID && item.userID == userID) {
                     existData.splice(index, 1);
                 }

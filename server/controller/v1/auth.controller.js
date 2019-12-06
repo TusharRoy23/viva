@@ -53,6 +53,7 @@ const register = async (req, res) => {
     const { username, password } = req.body;
     
     try {
+        
         var data = {
             userID: uuidv4(),
             username: username,
@@ -63,7 +64,7 @@ const register = async (req, res) => {
             var existData = JSON.parse(contents);
             if (existData.filter(user => user.username == data.username).length != '0') {
                 return res.status(201).json({
-                    msg : 'User Already Exists',
+                    msg : 'User Already Exists !',
                     status : false
                 });
             }
@@ -72,7 +73,7 @@ const register = async (req, res) => {
 
                 fs.writeFileSync(userJson, JSON.stringify(existData));
                 return res.status(201).json({
-                    msg : 'Successfully Store !',
+                    msg : 'Registration Successful !',
                     status : true
                 });
             }

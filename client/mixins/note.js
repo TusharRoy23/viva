@@ -9,14 +9,21 @@ export default {
     },
     methods: {
         getNoteList () {
-            var userID = JSON.parse(localStorage.getItem('auth')).userID;
-            this.$store.dispatch(GET_NOTE_LIST, {userID})
-            .then((response) => {
-                this.$store.commit(NOTE_LIST, response.data.msg);
-            })
-            .catch(error => {
-                console.log(error);
-            });
+            if (JSON.parse(localStorage.getItem('auth'))) {
+                var userID = JSON.parse(localStorage.getItem('auth')).userID;
+                this.$store.dispatch(GET_NOTE_LIST, {userID})
+                .then((response) => {
+                    this.$store.commit(NOTE_LIST, response.data.msg);
+                })
+                .catch(error => {
+                    console.log(error);
+                });
+            }
+        },
+        checkAuthUser () {
+            if (!JSON.parse(localStorage.getItem('auth'))) {
+                this.$router.push('/');
+            }
         }
     },
 };
