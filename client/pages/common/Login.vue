@@ -4,7 +4,7 @@
             <div class="row">
                 <div class="col s6">
                     <div class="row">
-                        <form @submit="getLogin" data-vv-scope="formLogin">
+                        <form @submit="getLogin">
                             <h3>Login</h3>
                             <div class="input-field col s12">
                                 <text-input 
@@ -41,7 +41,7 @@
                 </div>
                 <div class="col s6">
                     <div class="row">
-                        <form @submit="getRegister" data-vv-scope="formRegister">
+                        <form @submit="getRegister">
                             <h3>Register</h3>
                             <div class="input-field col s12">
                                 <!-- <input id="first_name" type="text" class="validate" v-model="register.username"> -->
@@ -110,19 +110,20 @@ export default {
     methods: {
         getLogin (e) {
             e.preventDefault();
-            this.$validator.validateAll('formLogin').then(isValid => {
+            this.$validator.validate().then(isValid => {
                 if (!isValid) {
                     return
                 }
                 
                 this.$store.dispatch(POST_LOGIN, this.model)
                 .then((response) => {
+                    console.log(response);
                     if (response.data.status) {
                         localStorage.setItem('auth', JSON.stringify(response.data.auth));
                         this.$router.push('/Dashboard');
                     }
                     else{
-                        this.msg.loginErr = response.data.msg;
+                        this.message.loginErr = response.data.msg;
                     }
                 })
                 .catch(error => {
@@ -137,13 +138,14 @@ export default {
         },
         getRegister (e) {
             e.preventDefault();
-            this.$validator.validateAll('formRegister').then(isValid => {
+            this.$validator.validate().then(isValid => {
                 if (!isValid) {
                     return
                 }
-
+                
                 this.$store.dispatch(POST_REGISTER, this.register)
                 .then((response) => {
+                        console.log(response);
                         if (response.data.status) {
                             this.message.registerErr = '';
                             this.message.registerSuccess = response.data.msg;

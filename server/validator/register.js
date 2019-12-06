@@ -6,9 +6,10 @@ const RegisterValidator = Yup.object().shape({
 });
 
 export default (req, res, next) => {
-    const { username, password } = req.body;
+    const UserName = req.body.username;
+    const UserPassword = req.body.password;
 
-    RegisterValidator.validate({ username, password })
+    RegisterValidator.validate({ UserName, UserPassword })
     .then(() => next())
     .catch(error => res.status(422).json({
         [error.path]: error.message
