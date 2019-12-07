@@ -4,29 +4,28 @@
             <div class="row">
                 <div class="col s6">
                     <div class="row">
-                        <form @submit="getLogin">
+                        <form @submit.prevent="getLogin('getLogin')" data-vv-scope="getLogin">
                             <h3>Login</h3>
                             <div class="input-field col s12">
-                                <text-input 
-                                    type="text"
-                                    :value="model.username"
-                                    name="username"
-                                    v-model="model.username"
-                                    v-validate="'required'"
-                                    placeholder="Enter your Username"
-                                    :error="errors.first('username')"
-                                />
+                                <input name="username" 
+                                        v-validate="'required|min:3'" 
+                                        class="form-control"
+                                        type="text" 
+                                        v-model="model.username"
+                                        placeholder="Enter your Username"
+                                >
+                                <span v-show="errors.has('getLogin.username')" style="color:#ff7979">{{ errors.first('getLogin.username') }}</span>
+                                
                             </div>
                             <div class="input-field col s12">
-                                <text-input 
-                                    type="password"
-                                    :value="model.password"
-                                    name="password"
-                                    v-model="model.password"
-                                    v-validate="'required'"
-                                    placeholder="Enter your Password"
-                                    :error="errors.first('password')"
-                                />
+                                <input name="password" 
+                                        v-validate="'required|min:6'" 
+                                        class="form-control"
+                                        type="text" 
+                                        v-model="model.password"
+                                        placeholder="Enter your Password"
+                                >
+                                <span v-show="errors.has('getLogin.password')" style="color:#ff7979">{{ errors.first('getLogin.password') }}</span>
                             </div>
                             <div class="input-field col s12" v-if="message.loginErr" style="color:#ff7979">
                                 <p>{{message.loginErr}}</p>
@@ -108,9 +107,9 @@ export default {
         }
     },
     methods: {
-        getLogin (e) {
-            e.preventDefault();
-            this.$validator.validate().then(isValid => {
+        getLogin (getLogin) {
+            
+            this.$validator.validateAll(getLogin).then(isValid => {
                 if (!isValid) {
                     return
                 }
