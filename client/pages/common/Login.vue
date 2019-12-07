@@ -21,7 +21,7 @@
                                 <input name="password" 
                                         v-validate="'required|min:6'" 
                                         class="form-control"
-                                        type="text" 
+                                        type="password" 
                                         v-model="model.password"
                                         placeholder="Enter your Password"
                                 >
@@ -40,30 +40,29 @@
                 </div>
                 <div class="col s6">
                     <div class="row">
-                        <form @submit="getRegister">
+                        <form @submit.prevent="getRegister('getRegister')" data-vv-scope="getRegister">
                             <h3>Register</h3>
                             <div class="input-field col s12">
-                                <!-- <input id="first_name" type="text" class="validate" v-model="register.username"> -->
-                                <text-input 
-                                    type="text"
-                                    :value="register.username"
-                                    name="UserName"
-                                    v-model="register.username"
-                                    v-validate="'required'"
-                                    placeholder="Enter your Username"
-                                    :error="errors.first('UserName')"
-                                />
+                                <input name="UserName" 
+                                        v-validate="'required|min:3'" 
+                                        class="form-control"
+                                        type="text" 
+                                        v-model="register.username"
+                                        placeholder="Enter your Username"
+                                >
+                                <span v-show="errors.has('getRegister.UserName')" style="color:#ff7979">{{ errors.first('getRegister.UserName') }}</span>
                             </div>
                             <div class="input-field col s12">
-                                <text-input 
-                                    type="password"
-                                    :value="register.password"
-                                    name="UserPassword"
-                                    v-model="register.password"
-                                    v-validate="'required'"
-                                    placeholder="Enter your Password"
-                                    :error="errors.first('UserPassword')"
-                                />
+                                <input name="UserPassword" 
+                                        v-validate="'required|min:6'" 
+                                        class="form-control"
+                                        type="password" 
+                                        v-model="register.password"
+                                        placeholder="Enter your Password"
+                                >
+                                <span v-show="errors.has('getRegister.UserPassword')" style="color:#ff7979">{{ errors.first('getRegister.UserPassword') }}</span>
+
+                                
                             </div>
                             <div class="input-field col s12" v-if="message.registerErr" style="color:#ff7979">
                                 <p>{{message.registerErr}}</p>
@@ -135,9 +134,9 @@ export default {
                 })
             })
         },
-        getRegister (e) {
-            e.preventDefault();
-            this.$validator.validate().then(isValid => {
+        getRegister (getRegister) {
+            
+            this.$validator.validateAll(getRegister).then(isValid => {
                 if (!isValid) {
                     return
                 }
