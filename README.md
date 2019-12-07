@@ -4,7 +4,7 @@ A User need to register with unique Username to get access in the Dashboard. Aft
 # Installation Instructions
 run on terminal:
 1) git clone https://github.com/TusharRoy23/viva.git
-2) npm run install
+2) npm install
 3) npm run build <br>
 ** wait for few seconds ** <br>
 4) npm run dev
