@@ -115,7 +115,6 @@ export default {
                 
                 this.$store.dispatch(POST_LOGIN, this.model)
                 .then((response) => {
-                    console.log(response);
                     if (response.data.status) {
                         localStorage.setItem('auth', JSON.stringify(response.data.auth));
                         this.$router.push('/Dashboard');
@@ -143,7 +142,6 @@ export default {
                 
                 this.$store.dispatch(POST_REGISTER, this.register)
                 .then((response) => {
-                        console.log(response);
                         if (response.data.status) {
                             this.message.registerErr = '';
                             this.message.registerSuccess = response.data.msg;
